@@ -1,3 +1,4 @@
+import 'package:finalproject/otherreport.dart';
 import 'package:finalproject/widget_tree.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -33,6 +34,7 @@ class MyApp extends StatelessWidget {
         '/report': (context) => ReportScreen(),
         '/home': (context) => HomePage(),
         '/profile': (context) => ProfileScreen(),
+        '/otherReport' : (context) => OtherReportScreen(),
         //'/reportQC': (context) => ReportQCScreen(),
       },
       debugShowCheckedModeBanner: false,

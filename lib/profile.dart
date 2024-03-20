@@ -33,6 +33,7 @@ class ProfileScreen extends StatelessWidget {
     return Scaffold(
         backgroundColor: Colors.lightBlue[50],
         appBar: AppBar(
+          iconTheme: IconThemeData(color: Colors.white),
           title: Text(
             "WheelWatch",
             style: TextStyle(
@@ -42,6 +43,88 @@ class ProfileScreen extends StatelessWidget {
             ),
           ),
           backgroundColor: Colors.lightBlue[900],
+        ),
+        drawer: Drawer(
+          backgroundColor: Colors.lightBlue[50],
+          // Add a ListView to the drawer. This ensures the user can scroll
+          // through the options in the drawer if there isn't enough vertical
+          // space to fit everything.
+          child: ListView(
+            // Important: Remove any padding from the ListView.
+            padding: EdgeInsets.zero,
+            children: [
+              DrawerHeader(
+                decoration: BoxDecoration(
+                  color: Colors.cyan[800],
+                ),
+                child: Text(
+                    'WheelWatch Application',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                      fontSize: 25,
+                      letterSpacing: 1,
+                    )
+                ),
+              ),
+              ListTile(
+                title: const Text(
+                    'Home',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black,
+                      fontSize: 25,
+                      letterSpacing: 1,
+                    )
+                ),
+                onTap: () {
+                  Navigator.pushReplacementNamed(context, "/");
+                },
+              ),
+              ListTile(
+                title: const Text(
+                    'Other Reports',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black,
+                      fontSize: 25,
+                      letterSpacing: 1,
+                    )
+                ),
+                onTap: () {
+                  Navigator.pushReplacementNamed(context, "/otherReport");
+                },
+              ),
+              ListTile(
+                title: const Text(
+                    'Report',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black,
+                      fontSize: 25,
+                      letterSpacing: 1,
+                    )
+                ),
+                onTap: () {
+                  Navigator.pushReplacementNamed(context, "/report");
+                },
+              ),
+              ListTile(
+                title: const Text(
+                    'Profile',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black,
+                      fontSize: 25,
+                      letterSpacing: 1,
+                    )
+                ),
+                onTap: () {
+                  Navigator.pushReplacementNamed(context, "/profile");
+                },
+              ),
+            ],
+          ),
         ),
 
         body: Column(

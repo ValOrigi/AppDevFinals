@@ -60,9 +60,16 @@ class _LoginPageState extends State<LoginPage>{
     return ElevatedButton(
       onPressed:
         isLogin ? signInWithEmailAndPassword : createUserWithEmailAndPassword,
-      child: Text(isLogin ? 'Login' : 'Register'),
+      child: Text(isLogin ? 'LOGIN' : 'REGISTER',
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            color: Colors.white,
+            fontSize: 25,
+            letterSpacing: 5,
+          )
+      ),
       style: ElevatedButton.styleFrom(
-        primary: Colors.lightBlue[50],
+        primary: Colors.cyan[800],
         onPrimary: Colors.cyan[800],
       ),
     );
@@ -75,7 +82,12 @@ class _LoginPageState extends State<LoginPage>{
           isLogin = !isLogin;
         });
       },
-      child: Text(isLogin ? 'Register instead' : 'Login instead'),
+      child: Text(isLogin ? 'Register instead' : 'Login instead',
+        style: TextStyle(
+        fontWeight: FontWeight.bold,
+        color: Colors.cyan[900],
+        fontSize: 15,
+      )),
 
     );
   }
@@ -104,14 +116,14 @@ class _LoginPageState extends State<LoginPage>{
                         margin: EdgeInsets.only(top: 110, left: 35, right: 35),
                         child: Center(
                             child: Text(
-                                "WheelWatch\nJoshua M. Reyna",
+                                "WHEELWATCH\nby Joshua M. Reyna",
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
                                   fontWeight: FontWeight.bold,
                                   color: Colors.white,
                                   fontSize: 25,
-                                  letterSpacing: 5,
-                                )
+                                  letterSpacing: 4,
+                                ),
                             )
                         )
                     ),

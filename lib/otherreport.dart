@@ -4,14 +4,14 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_database/ui/firebase_animated_list.dart';
 import 'package:finalproject/auth.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
+class OtherReportScreen extends StatefulWidget {
+  const OtherReportScreen({Key? key}) : super(key: key);
 
   @override
-  State<HomePage> createState() => _HomePage();
+  State<OtherReportScreen> createState() => _HomePage();
 }
 
-class _HomePage extends State<HomePage> {
+class _HomePage extends State<OtherReportScreen> {
 
   final User? user = Auth().currentUser;
   DatabaseReference reference = FirebaseDatabase.instance.ref().child('Reports');
@@ -27,136 +27,99 @@ class _HomePage extends State<HomePage> {
   Widget _signOutButton() {
     return ElevatedButton(
       onPressed:signOut,
-        style: ElevatedButton.styleFrom(
-          primary: Colors.red[900],
-          onPrimary: Colors.lightBlue[50],
-        ),
-        child: Icon(
-          Icons.cancel,
-        ),
-      );
+      style: ElevatedButton.styleFrom(
+        primary: Colors.red[900],
+        onPrimary: Colors.lightBlue[50],
+      ),
+      child: Icon(
+        Icons.cancel,
+      ),
+    );
   }
 
-  Query dbRef = FirebaseDatabase.instance.ref().child('Reports');
+  Query dbRef = FirebaseDatabase.instance.ref().child('OtherReports');
 
   Widget listItem({required Map report}) {
     return Container(
-      margin: const EdgeInsets.only(left:35, right: 35, bottom: 20),
-      padding: const EdgeInsets.all(10),
-      height: 225,
+        margin: const EdgeInsets.only(left:35, right: 35, bottom: 20),
+        padding: const EdgeInsets.all(10),
+        height: 225,
         decoration: BoxDecoration(
           color: Colors.cyan[800],
           borderRadius: BorderRadius.circular(10.0),
         ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            report['person'],
-            style: TextStyle(
-              fontSize: 24,
-              fontWeight: FontWeight.bold,
-              color: Colors.white,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              report['person'],
+              style: TextStyle(
+                fontSize: 24,
+                fontWeight: FontWeight.bold,
+                color: Colors.white,
+              ),
             ),
-          ),
 
-          Text(
-            report['report'],
-            style: TextStyle(
-              fontSize: 16,
-              fontWeight: FontWeight.bold,
-              color: Colors.white,
+            Text(
+              report['report'],
+              style: TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
+                color: Colors.white,
+              ),
             ),
-          ),
-          const SizedBox(
-            height: 5,
-          ),
-
-          Text(
-            report['location'],
-            style: TextStyle(
-              fontSize: 16,
-              fontWeight: FontWeight.bold,
-              color: Colors.white,
+            const SizedBox(
+              height: 5,
             ),
-          ),
-          const SizedBox(
-            height: 5,
-          ),
 
-          Text(
-            report['description'],
-            style: TextStyle(
-              fontSize: 16,
-              fontWeight: FontWeight.bold,
-              color: Colors.white,
+            Text(
+              report['location'],
+              style: TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
+                color: Colors.white,
+              ),
             ),
-          ),
+            const SizedBox(
+              height: 5,
+            ),
+
+            Text(
+              report['description'],
+              style: TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
+                color: Colors.white,
+              ),
+            ),
 
 
-          Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              GestureDetector(
-                onTap: () {
-                  reference.child(report['key']).remove();
-                },
-                child: Row(
-                  children: [
-                    IconButton(
-                      onPressed: () {
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                GestureDetector(
+                  onTap: () {
+                    reference.child(report['key']).remove();
+                  },
+                  child: Row(
+                    children: [
+                      IconButton(
+                        onPressed: () {
                           setState(() => report['isFavorite'] = !report['isFavorite']);
-                      },
-                      icon: report['isFavorite']
-                          ? Icon(Icons.check, color: Colors.white, size: 25) : Icon(Icons.timer, color: Colors.grey, size: 25),
-                    ),
-                    Icon(
-                      Icons.delete_forever,
-                      color: Colors.red[800],
-                      size: 25,
-                    )
-                  ],
-                ),
-              )
-            ],
-          )
-        ],
-      )
+                        },
+                        icon: report['isFavorite']
+                            ? Icon(Icons.check, color: Colors.white, size: 25) : Icon(Icons.timer, color: Colors.grey, size: 25),
+                      ),
+                    ],
+                  ),
+                )
+              ],
+            )
+          ],
+        )
     );
-  }
-
-  int _selectedIndex = 0;
-  static const TextStyle optionStyle =
-  TextStyle(
-      fontWeight: FontWeight.bold,
-      color: Colors.white,
-      letterSpacing: 1,
-  );
-  static const List<Widget> _widgetOptions = <Widget>[
-    Text(
-      'Index 0: Home',
-        style: optionStyle,
-    ),
-    Text(
-      'Index 1: Other Reports',
-      style: optionStyle,
-    ),
-    Text(
-      'Index 2: Report',
-      style: optionStyle,
-    ),
-    Text(
-      'Index 3: Profile',
-      style: optionStyle,
-    ),
-  ];
-
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
   }
 
   @override
@@ -200,13 +163,13 @@ class _HomePage extends State<HomePage> {
               ),
               ListTile(
                 title: const Text(
-                  'Home',
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    color: Colors.black,
-                    fontSize: 25,
-                    letterSpacing: 1,
-                  )
+                    'Home',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black,
+                      fontSize: 25,
+                      letterSpacing: 1,
+                    )
                 ),
                 onTap: () {
                   Navigator.pushReplacementNamed(context, "/");
@@ -244,11 +207,11 @@ class _HomePage extends State<HomePage> {
                 title: const Text(
                     'Profile',
                     style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    color: Colors.black,
-                    fontSize: 25,
-                    letterSpacing: 1,
-                  )
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black,
+                      fontSize: 25,
+                      letterSpacing: 1,
+                    )
                 ),
                 onTap: () {
                   Navigator.pushReplacementNamed(context, "/profile");
@@ -273,13 +236,13 @@ class _HomePage extends State<HomePage> {
                       ),
                       margin: EdgeInsets.symmetric(horizontal: 30, vertical: 25),
                     ),
-          
+
                     Positioned(
                       child: Container(
                           margin: EdgeInsets.only(top: 35, left: 35, right: 35),
                           child: Center(
                               child: Text(
-                                  "MY REPORTS",
+                                  "OTHER REPORTS",
                                   style: TextStyle(
                                     fontWeight: FontWeight.bold,
                                     color: Colors.white,
@@ -293,21 +256,21 @@ class _HomePage extends State<HomePage> {
                   ]
               ),
 
-                Container(
-                    height: 500,
-                    child: Center(
-                      child: FirebaseAnimatedList(
-                        query: dbRef,
-                        itemBuilder: (BuildContext context, DataSnapshot snapshot, Animation<double> animation, int index){
-                          Map report = snapshot.value as Map;
-                          report['key'] = snapshot.key;
-          
-                          return listItem(report: report);
-                          },
-                      ),
-                    )
-                ),
-          
+              Container(
+                  height: 500,
+                  child: Center(
+                    child: FirebaseAnimatedList(
+                      query: dbRef,
+                      itemBuilder: (BuildContext context, DataSnapshot snapshot, Animation<double> animation, int index){
+                        Map report = snapshot.value as Map;
+                        report['key'] = snapshot.key;
+
+                        return listItem(report: report);
+                      },
+                    ),
+                  )
+              ),
+
               Row(
                 children: <Widget>[
                   Stack(
@@ -315,16 +278,22 @@ class _HomePage extends State<HomePage> {
                         Container(
                           margin: EdgeInsets.only(top: 20, left: 50, bottom: 15),
                           child: Center(
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: <Widget>[
-                                  _signOutButton()
-                                ],
-                              )
+                            child: ElevatedButton(
+                              onPressed:()
+                              {
+                                Navigator.pushReplacementNamed(context, "/");
+                              },
+                              style: ElevatedButton.styleFrom(
+                                primary: Colors.lightBlue[900],
+                                onPrimary: Colors.lightBlue[50],
+                              ),
+                              child: Icon(
+                                Icons.home,
+                              ),
+                            ) ,
                           ),
                         ),
-          
+
                         Container(
                           margin: EdgeInsets.only(top: 20, right: 160, left: 160, bottom: 15),
                           child: Center(
@@ -343,7 +312,7 @@ class _HomePage extends State<HomePage> {
                             ) ,
                           ),
                         ),
-          
+
                         Container(
                           margin: EdgeInsets.only(top: 20, left: 270, bottom: 35),
                           child: Center(
@@ -362,12 +331,12 @@ class _HomePage extends State<HomePage> {
                             ) ,
                           ),
                         ),
-          
+
                       ]
                   )
                 ],
               ),
-          
+
             ],
           ),
         )
